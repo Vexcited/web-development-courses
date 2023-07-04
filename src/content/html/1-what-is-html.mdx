@@ -1,0 +1,105 @@
+---
+title: "What is HTML ?"
+description: "HTML is a must for any website. You can't build any website properly without any HTML knowledge. It's thank to it that you can visualize structured webpages in your web browser."
+tags: ["html"]
+sources: ["https://www.w3schools.com/html/html_intro.asp"]
+---
+
+## HyperText Markup Language
+
+> This section should be updated with more informations.
+
+### History
+
+| Year | What happened |
+| ---- | ------------- |
+| 1989 | Tim Berners-Lee invented the World Wide Web (www) |
+| 1991 | Tim Berners-Lee invented HTML |
+| 2008 | First public draft of HTML5 |
+| 2014 | W3C Recommendation: HTML5 |
+
+## Create a new page
+
+It's really simple to create a new web page.
+
+Create a new file anywhere with the extension `.html`.
+
+> We'll take `homepage.html` as our example for the rest of this lesson.
+
+Open that file with the editor of your choice, in the lesson we'll open it with [Visual Studio Code](https://code.visualstudio.com/).
+
+## How tags work ?
+
+### Two types of tags
+
+#### `<tag>Some content</tag>`
+
+It consists of an opening tag `<tag>` and a closing tag `</tag>`. Everything in between is **the content**.
+
+#### `<tag />`
+
+Those tags doesn't have extra content you can add, they are empty elements and don't have an end tag.
+
+The `/` at the end is optional, we can also write `<tag>` and it will work.
+It's just confusing for everyone though so please add that little `/` on empty elements to make your code easier to read, since anyone can differentiate them.
+
+Empty tags are elements that you put at one place specifically, that's why they don't have any content.
+
+### Attributes
+
+Tags can have attributes, it's like parameters.
+
+Attributes should be added in the opening part of a tag.
+
+So for example, if we want to add an attribute `id` with the value of `myElement`, we'll just write `<tag id="myElement"></tag>`.
+
+## An example of a simple HTML document
+
+### Code of our `homepage.html`
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Hello World, from the tab</title>
+  </head>
+  <body>
+    <h1>Hello World, from the body !</h1>
+  </body>
+</html>
+```
+
+### Explanation
+
+#### `<!DOCTYPE html>`
+
+This is not a tag, it's a declaration you have to put at the very beginning to define that this document is an HTML5 document.
+
+#### `<html>`
+
+Root element of an HTML page, it can only contain two elements: `<head>` and `<body>` - we'll see them just below.
+
+#### `<head>`
+
+This is where you'll put all the meta information about the HTML page such as `<title>`, `<meta>` or `<link>` for example.
+
+Everything you put there will not be visible by the user - except for `<title>` that will be the text for the browser tab.
+
+#### `<body>`
+
+Content of the HTML page, everything here - with some exceptions - will be visible by the user.
+
+That's here you'll write headings, paragraphs, images and even more in the future.
+
+#### `<meta charset="utf-8" />`
+
+We use the `<meta>` tag to add a meta information to the page. Here, we say that the page is using UTF-8. This will enable support for almost every characters from every languages.
+
+#### `<title>`
+
+The content of this element will be placed in tab of your browser.
+
+#### `<h1>`
+
+Largest heading, the most important one. We'll see about this in the next lesson on headings.

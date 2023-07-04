@@ -1,0 +1,16 @@
+---
+import { getCollection } from "astro:content";
+
+const allHtmlPosts = await getCollection("html");
+---
+
+<html>
+  <head>
+    <title>HTML - Learn Web Development</title>
+  </head>
+  <body>
+    {allHtmlPosts.map(post => (
+      <a href={`/learn/html/${post.slug}`}>{post.data.title}</a>
+    ))}
+  </body>
+</html>
