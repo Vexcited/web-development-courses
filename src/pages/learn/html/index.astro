@@ -10,7 +10,7 @@ const allHtmlPosts = await getCollection("html");
   </head>
   <body>
     {allHtmlPosts.map(post => (
-      <a href={`/learn/html/${post.slug}`}>{post.data.title}</a>
+      <a href={`${import.meta.env.BASE_URL}learn/html/${post.slug}`}>{post.data.title}</a>
     ))}
   </body>
 </html>
