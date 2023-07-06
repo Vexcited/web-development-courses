@@ -11,4 +11,11 @@ export default defineConfig({
 
   site: 'https://vexcited.github.io',
   base: '/web-development-courses',
+
+  markdown: {
+    shikiConfig: {
+      theme: "nord",
+      wrap: true
+    }
+  }
 });
