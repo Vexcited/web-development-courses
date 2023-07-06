@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^0.19.7",
-    "astro": "^2.7.2"
+    "astro": "^2.8.0"
   },
   "devDependencies": {
     "@unocss/preset-rem-to-px": "^0.53.4",
