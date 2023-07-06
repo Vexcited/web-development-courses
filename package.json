@@ -14,6 +14,7 @@
   "devDependencies": {
     "@unocss/preset-rem-to-px": "^0.53.4",
     "@unocss/reset": "^0.53.4",
+    "@unocss/transformer-directives": "^0.53.4",
     "@unocss/transformer-variant-group": "^0.53.4",
     "unocss": "^0.53.4"
   }

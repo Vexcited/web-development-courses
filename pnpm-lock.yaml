@@ -19,6 +19,9 @@ devDependencies:
   '@unocss/reset':
     specifier: ^0.53.4
     version: 0.53.4
+  '@unocss/transformer-directives':
+    specifier: ^0.53.4
+    version: 0.53.4
   '@unocss/transformer-variant-group':
     specifier: ^0.53.4
     version: 0.53.4
