@@ -12,4 +12,10 @@ export default defineConfig({
   transformers: [
     transformerVariantGroup(),
   ],
+
+  theme: {
+    fontFamily: {
+      sans: "Sora"
+    }
+  }
 })
