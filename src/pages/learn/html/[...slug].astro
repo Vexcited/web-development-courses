@@ -4,28 +4,114 @@ import { getCollection } from 'astro:content';
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('html');
-  return blogEntries.map(entry => ({
+  const allHtmlPosts = await getCollection('html');
+  return allHtmlPosts.map(entry => ({
     params: { slug: entry.slug }, props: { entry }
   }));
 }
-
 const { entry } = Astro.props;
+const allHtmlPosts = await getCollection("html");
+const currentPostIndex = allHtmlPosts.findIndex(post => post.slug === entry.slug);
+
+const previousPost = allHtmlPosts[currentPostIndex - 1];
+const nextPost = allHtmlPosts[currentPostIndex + 1];
+
 const { Content } = await entry.render();
 ---
 
 <Layout title={entry.data.title}>
   <main class="min-h-screen h-full bg-[#1F1F1F] text-[#DEDEDE] p-6">
-    <h1>{entry.data.title}</h1>
-    <a href="../html">See other lessons</a>
-    <article class="markdown max-w-3xl w-full mx-auto flex flex-col gap-2">
+    <div class="flex flex-col gap-1">
+      <h1 class="text-4xl">{currentPostIndex + 1}. {entry.data.title}</h1>
+      <a href="../html" class="text-opacity-80 w-fit px-3 py-1 bg-[rgb(36,36,36)] hover:bg-[rgb(40,40,40)] border border-[rgb(48,48,48)] rounded-lg transition-colors">
+        &lt; Go back to selection menu
+      </a>
+    </div>
+
+    <article class="markdown max-w-3xl w-full mx-auto flex flex-col gap-2 mt-6 ">
       <Content />
     </article>
+
+    <div class="mt-8 border-t pt-4 max-w-3xl w-full mx-auto pb-6 border-[rgb(50,50,50)] overflow-hidden">
+      {previousPost && (
+        <a class="px-6 py-2 border border-[rgb(60,60,60)] hover:(border-[rgb(80,80,80)] bg-[rgb(40,40,40)]) rounded-xl transition-colors float-left" href={`./${previousPost.slug}`}>
+          &lt; {currentPostIndex.toString() + ". " + previousPost.data.title}
+        </a>
+      )}
+      {nextPost && (
+        <a class="px-6 py-2 border border-[rgb(60,60,60)] hover:(border-[rgb(80,80,80)] bg-[rgb(40,40,40)]) rounded-xl transition-colors float-right" href={`./${nextPost.slug}`}>
+          {(currentPostIndex + 2).toString() + ". " + nextPost.data.title} &gt;
+        </a>
+      )}
+    </div>
   </main>
 </Layout>
 
-<style>
+<style is:global>
+  .markdown h2,
+  .markdown h3,
+  .markdown h4,
+  .markdown h5,
+  .markdown h6 {
+    @apply mt-4 text-[rgb(245,245,245)];
+  }
+
   .markdown h2 {
-    @apply text-3xl;
+    @apply text-2xl font-bold mb-4;
+  }
+
+  .markdown h3 {
+    @apply text-xl font-semibold mb-2;
+  }
+
+  .markdown h4 {
+    @apply text-xl font-medium mb-2;
+  }
+
+  .markdown a {
+    @apply text-[#f06529] hover:(underline underline-offset-4 underline-dotted);
+  }
+
+  .markdown p {
+    @apply text-[rgb(220,220,220)];
+  }
+
+  .markdown th, .markdown td {
+    @apply px-6 py-3;
+  }
+
+  .markdown tr {
+    @apply border border-[rgb(40,40,40)];
+  }
+
+  .markdown table {
+    @apply table-auto overflow-x-auto;
+  }
+  
+  .markdown thead {
+    @apply bg-[rgb(26,26,26)] border border-[rgb(28,28,28)] ;
+  }
+  .markdown tbody {
+    @apply bg-[rgb(29,29,29)] border border-[rgb(28,28,28)] ;
+  }
+
+  .markdown pre {
+    @apply p-4 rounded-xl;
+  }
+
+  .markdown code {
+    @apply bg-[rgb(40,40,40)] border border-[rgb(55,55,55)] rounded-lg px-2 py-0.5;
+  }
+
+  .markdown pre code {
+    @apply bg-transparent border-none p-0 rounded-0;
+  }
+
+  .markdown blockquote {
+    @apply border-l-4 border-[rgb(48,48,48)] bg-[rgb(38,38,38)] pl-4 p-2 rounded-lg my-1;
+  }
+
+  .markdown blockquote p {
+    @apply text-[rgb(170,170,170)];
   }
 </style>
