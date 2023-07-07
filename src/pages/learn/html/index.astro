@@ -11,7 +11,7 @@ const allHtmlPosts = await getCollection("html");
       <h1 class="text-3xl font-medium">
         Learn HTML
       </h1>
-      <a href="../" class="text-opacity-80 w-fit px-3 py-1 bg-[rgb(36,36,36)] hover:bg-[rgb(40,40,40)] border border-[rgb(48,48,48)] rounded-lg transition-colors">
+      <a href={import.meta.env.BASE_URL} class="text-opacity-80 w-fit px-3 py-1 bg-[rgb(36,36,36)] hover:bg-[rgb(40,40,40)] border border-[rgb(48,48,48)] rounded-lg transition-colors">
         &lt; Go back to home page
       </a>
     </div>

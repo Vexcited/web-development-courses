@@ -23,7 +23,7 @@ const { Content } = await entry.render();
   <main class="min-h-screen h-full bg-[#1F1F1F] text-[#DEDEDE] p-6">
     <div class="flex flex-col gap-1">
       <h1 class="text-4xl">{currentPostIndex + 1}. {entry.data.title}</h1>
-      <a href="../html" class="text-opacity-80 w-fit px-3 py-1 bg-[rgb(36,36,36)] hover:bg-[rgb(40,40,40)] border border-[rgb(48,48,48)] rounded-lg transition-colors">
+      <a href={`${import.meta.env.BASE_URL}learn/html`} class="text-opacity-80 w-fit px-3 py-1 bg-[rgb(36,36,36)] hover:bg-[rgb(40,40,40)] border border-[rgb(48,48,48)] rounded-lg transition-colors">
         &lt; Go back to selection menu
       </a>
     </div>
@@ -34,12 +34,16 @@ const { Content } = await entry.render();
 
     <div class="mt-8 border-t pt-4 max-w-3xl w-full mx-auto pb-6 border-[rgb(50,50,50)] overflow-hidden">
       {previousPost && (
-        <a class="px-6 py-2 border border-[rgb(60,60,60)] hover:(border-[rgb(80,80,80)] bg-[rgb(40,40,40)]) rounded-xl transition-colors float-left" href={`./${previousPost.slug}`}>
+        <a class="px-6 py-2 border border-[rgb(60,60,60)] hover:(border-[rgb(80,80,80)] bg-[rgb(40,40,40)]) rounded-xl transition-colors float-left"
+          href={`${import.meta.env.BASE_URL}learn/html/${previousPost.slug}`}
+        >
           &lt; {currentPostIndex.toString() + ". " + previousPost.data.title}
         </a>
       )}
       {nextPost && (
-        <a class="px-6 py-2 border border-[rgb(60,60,60)] hover:(border-[rgb(80,80,80)] bg-[rgb(40,40,40)]) rounded-xl transition-colors float-right" href={`./${nextPost.slug}`}>
+        <a class="px-6 py-2 border border-[rgb(60,60,60)] hover:(border-[rgb(80,80,80)] bg-[rgb(40,40,40)]) rounded-xl transition-colors float-right"
+          href={`${import.meta.env.BASE_URL}learn/html/${nextPost.slug}`}
+        >
           {(currentPostIndex + 2).toString() + ". " + nextPost.data.title} &gt;
         </a>
       )}
