@@ -1,0 +1,52 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "./Layout.astro";
+
+export interface Props {
+  collection: "html" | "css" | "javascript";
+}
+
+const allPosts = await getCollection(Astro.props.collection);
+
+let title = Astro.props.collection.toUpperCase();
+if (title === "JAVASCRIPT") {
+  title = "JavaScript";
+}
+---
+
+<Layout title={`${title} - Learn Web Development`}>
+  <main class="min-h-screen h-full bg-[#1F1F1F] text-[#DEDEDE] justify-center flex flex-col gap-8 py-8 px-2">
+    <div class="flex flex-col gap-2 text-center items-center">
+      <h1 class="text-3xl font-medium">
+        Learn {title}
+      </h1>
+      <a href={import.meta.env.BASE_URL} class="text-opacity-80 w-fit px-3 py-1 bg-[rgb(36,36,36)] hover:bg-[rgb(40,40,40)] border border-[rgb(48,48,48)] rounded-lg transition-colors">
+        &lt; Go back to home page
+      </a>
+    </div>
+    
+
+    <div class="flex flex-col p-4 rounded-md mx-auto max-w-3xl gap-4 w-full">
+      {allPosts.map((post, index) => (
+        <>
+          <a href={`${import.meta.env.BASE_URL}learn/${Astro.props.collection}/${post.slug}`}
+            class="hover:border-[#f06529] transition-colors flex flex-col gap-1 rounded-lg hover:bg-[rgb(35,35,35)] p-4"
+          >
+            <h2 class="text-lg font-semibold text-[rgb(240,240,240)]">
+              {index + 1}. {post.data.title}
+            </h2>
+            <p class="ext-[rgb(210,210,210)]">
+              {post.data.description}  
+            </p>
+          </a>
+
+          {index !== allPosts.length-1 && (
+            <hr class="border-[rgb(50,50,50)]" />
+          )}
+        </>
+      ))}
+    </div>
+  </main>
+  
+
+</Layout>
